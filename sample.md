@@ -7,7 +7,7 @@ status: Verified
 version: 2.4.0
 ---
 
-# The Architecture of Resilient Systems
+# #The Architecture of Resilient Systems
 
 > A field guide to building fault-tolerant, high-throughput software architectures with minimal operational complexity.
 
@@ -15,16 +15,15 @@ Written by **Elena Rostova** · Published September 2026 · *12 min read*
 
 ---
 
-## Executive Summary
+## #Executive Summary
 
 Modern distributed architectures often collapse not from external traffic surges, but from internal coordination deadlocks, hidden feedback loops, and cascading timeouts. By paring down architectural layers and prioritizing bounded autonomy, engineering teams can achieve resilience that survives unpredictable network partitions.
 
-> [!IMPORTANT]
-> The single greatest predictor of outage duration is not code complexity, but the opacity of state transitions during failure recovery.
+IMPORTANTThe single greatest predictor of outage duration is not code complexity, but the opacity of state transitions during failure recovery.
 
 ---
 
-## Core Principles
+## #Core Principles
 
 Every resilient system adheres to four invariants:
 
@@ -33,7 +32,7 @@ Every resilient system adheres to four invariants:
 3. **Idempotent Ingestion**: Network retries should never duplicate mutation side effects.
 4. **Observable Invariants**: Health cannot be inferred from HTTP 200 counts alone.
 
-### Invariant Comparison Matrix
+### #Invariant Comparison Matrix
 
 | Principle                    | Failure Mode Mitigated       | Latency Impact    | Implementation Complexity |
 | :--------------------------- | :--------------------------- | :---------------- | :------------------------ |
@@ -44,25 +43,18 @@ Every resilient system adheres to four invariants:
 
 ---
 
-## Architectural Alerts & Guidance
+## #Architectural Alerts & Guidance
 
-> [!NOTE]
-> All services within the internal mesh communicate using compact protocol buffers over HTTP/2, with automated mutual TLS renewal handled at the transport boundary.
-
-> [!TIP]
-> Prefer local in-memory token buckets for first-line rejection before invoking Redis or distributed coordination layers.
-
-> [!WARNING]
-> Setting socket timeouts higher than the upstream gateway timeout will inevitably lead to phantom request queues.
-
-> [!CAUTION]
-> Never execute database schema migrations with exclusive table locks while peak traffic exceeds 40% of standard capacity.
+NOTEAll services within the internal mesh communicate using compact protocol buffers over HTTP/2, with automated mutual TLS renewal handled at the transport boundary.
+TIPPrefer local in-memory token buckets for first-line rejection before invoking Redis or distributed coordination layers.
+WARNINGSetting socket timeouts higher than the upstream gateway timeout will inevitably lead to phantom request queues.
+CAUTIONNever execute database schema migrations with exclusive table locks while peak traffic exceeds 40% of standard capacity.
 
 ---
 
-## Implementation Patterns
+## #Implementation Patterns
 
-### 1. Zero-Allocation Token Bucket (Rust)
+### #1. Zero-Allocation Token Bucket (Rust)
 
 Below is an implementation of a lock-free token bucket limiter in Rust:
 
@@ -108,7 +100,7 @@ impl AtomicRateLimiter {
 }
 ```
 
-### 2. Resilient Fetch Pipeline (TypeScript)
+### #2. Resilient Fetch Pipeline (TypeScript)
 
 Here is the corresponding client middleware handling automatic backoff with jitter:
 
@@ -149,51 +141,44 @@ export async function resilientFetch(
 
 ---
 
-## Failure Recovery Flowchart
+## #Failure Recovery Flowchart
 
 ```mermaid
-graph TD
-    A[Incoming Request] --> B{Token Available?}
-    B -- Yes --> C[Process Downstream]
-    B -- No --> D[Evaluate Backpressure]
-    D --> E[Reject HTTP 429]
-    C --> F{Response OK?}
-    F -- Yes --> G[Return 200 Payload]
-    F -- No 5xx --> H[Circuit Breaker Failure Count]
-    H --> I{Trip Threshold Exceeded?}
-    I -- Yes --> J[Open Circuit State]
-    I -- No --> K[Retry with Jitter]
-    K --> C
+
 ```
 
 ---
 
-## Mathematical Formulation
+## #Mathematical Formulation
 
-The token refill model follows an affine linear equation bounded by bucket capacity $C$:
+The token refill model follows an affine linear equation bounded by bucket capacity CCC:
 
 $$
+T(t)=min⁡(C,  T(t0)+ρ⋅(t−t0))
 T(t) = \min\left(C, \; T(t_0) + \rho \cdot (t - t_0)\right)
+T(t)=min(C,T(t0​)+ρ⋅(t−t0​))
 $$
 
 Where:
 
-- $T(t)$ represents available tokens at time $t$
-- $\rho$ represents the sustained refill rate in tokens per second
-- $C$ represents the burst tolerance limit
+- T(t)T(t)T(t) represents available tokens at time ttt
+- ρ\rhoρ represents the sustained refill rate in tokens per second
+- CCC represents the burst tolerance limit
 
 For tail latency distribution, the 99.9th percentile bound under Pareto-distributed workloads obeys:
 
 $$
+P(X>x)=(xmx)αfor x≥xm
 \mathbb{P}(X > x) = \left(\frac{x_m}{x}\right)^\alpha \quad \text{for } x \ge x_m
+P(X>x)=(xxm​​)αfor x≥xm​
 $$
 
 ---
 
-## Deployment Checklist
+## #Deployment Checklist
 
 - [x] Configure health probe intervals with at least 3 consecutive failures before node unregistration
 - [x] Provision distributed tracing propagation headers (`traceparent`, `tracestate`)
 - [ ] Verify circuit breaker trip thresholds in staging load tests
-- [ ] Confirm database connection pool sizes match available backend worker threads
-- [ ] Configure edge CDN stale-while-revalidate caches
+- [x] Confirm database connection pool sizes match available backend worker threads
+- [x] Configure edge CDN stale-while-revalidate caches

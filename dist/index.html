@@ -3047,7 +3047,7 @@
         </span>
         <span>·</span>
         <span class="meta-tag">
-          Updated 1:57:02 pm
+          Updated 12:25:59 am
         </span>
       </div>
 
@@ -4120,18 +4120,77 @@ if(__exports != exports)module.exports = exports;return module.exports}));
       }
     } catch (err) {}
 
+    function copyTextToClipboard(text) {
+      if (typeof text !== 'string') text = String(text || '');
+      if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+        return navigator.clipboard.writeText(text).catch(() => fallbackCopyTextToClipboard(text));
+      }
+      return fallbackCopyTextToClipboard(text);
+    }
+
+    function fallbackCopyTextToClipboard(text) {
+      return new Promise((resolve, reject) => {
+        try {
+          const textArea = document.createElement('textarea');
+          textArea.value = text;
+          textArea.setAttribute('readonly', '');
+          textArea.style.position = 'fixed';
+          textArea.style.top = '0';
+          textArea.style.left = '0';
+          textArea.style.width = '2em';
+          textArea.style.height = '2em';
+          textArea.style.padding = '0';
+          textArea.style.border = 'none';
+          textArea.style.outline = 'none';
+          textArea.style.boxShadow = 'none';
+          textArea.style.background = 'transparent';
+          textArea.style.opacity = '0';
+          textArea.style.pointerEvents = 'none';
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          textArea.setSelectionRange(0, textArea.value.length);
+          const successful = document.execCommand('copy');
+          document.body.removeChild(textArea);
+          if (successful) {
+            resolve();
+          } else {
+            reject(new Error('execCommand copy failed'));
+          }
+        } catch (err) {
+          reject(err);
+        }
+      });
+    }
+
     function copyRawMarkdown(btn) {
-      const rawCode = document.getElementById('raw-markdown-code');
-      if (!rawCode) return;
-      const lines = Array.from(rawCode.querySelectorAll('.raw-line')).map(el => el.textContent);
-      const text = lines.length ? lines.join('\n') : rawCode.textContent;
-      navigator.clipboard.writeText(text).then(() => {
+      if (!btn) return;
+      const rawTextarea = document.getElementById('raw-editor-textarea');
+      let text = '';
+      if (rawTextarea && typeof rawTextarea.value === 'string' && rawTextarea.value.length > 0) {
+        text = rawTextarea.value;
+      } else {
+        const rawCode = document.getElementById('raw-markdown-code');
+        if (rawCode) {
+          const lines = Array.from(rawCode.querySelectorAll('.raw-line')).map(el => el.textContent);
+          text = lines.length ? lines.join('\n') : (rawCode.textContent || '');
+        }
+      }
+
+      copyTextToClipboard(text).then(() => {
         btn.classList.add('copied');
         btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 8.5l3 3 6.5-7" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/></svg> <span>Copied!</span>`;
-        setTimeout(() => {
+        if (btn._copyTimeout) clearTimeout(btn._copyTimeout);
+        btn._copyTimeout = setTimeout(() => {
           btn.classList.remove('copied');
           btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M10.5 5.5V3a1 1 0 00-1-1H3a1 1 0 00-1 1v6.5a1 1 0 001 1h2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg> <span>Copy Raw</span>`;
+          btn._copyTimeout = null;
         }, 1800);
+      }).catch(err => {
+        console.warn('Copy raw markdown failed:', err);
+        if (typeof showToast === 'function') {
+          showToast('Failed to copy to clipboard');
+        }
       });
     }
 
@@ -5134,33 +5193,50 @@ if(__exports != exports)module.exports = exports;return module.exports}));
 
     // 5. Code Copying
     function copyCode(btn) {
-      const pre = btn.closest('.code-block').querySelector('pre code');
-      if (!pre) return;
-      navigator.clipboard.writeText(pre.innerText).then(() => {
+      if (!btn) return;
+      const codeBlock = btn.closest('.code-block');
+      if (!codeBlock) return;
+      const codeEl = codeBlock.querySelector('pre code, code, pre');
+      if (!codeEl) return;
+      const codeText = codeEl.textContent || codeEl.innerText || '';
+
+      copyTextToClipboard(codeText).then(() => {
         btn.classList.add('copied');
-        const span = btn.querySelector('span');
-        const originalText = span.innerText;
-        span.innerText = 'Copied';
         btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 8.5l3 3 6.5-7" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/></svg> <span>Copied</span>`;
-        setTimeout(() => {
+        if (btn._copyTimeout) clearTimeout(btn._copyTimeout);
+        btn._copyTimeout = setTimeout(() => {
           btn.classList.remove('copied');
           btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M10.5 5.5V3a1 1 0 00-1-1H3a1 1 0 00-1 1v6.5a1 1 0 001 1h2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg> <span>Copy</span>`;
+          btn._copyTimeout = null;
         }, 1800);
+      }).catch(err => {
+        console.warn('Copy code failed:', err);
+        if (typeof showToast === 'function') {
+          showToast('Failed to copy code snippet');
+        }
       });
     }
 
     // 5b. Heading Link Copying
     function copyHeadingLink(el, slug) {
-      const url = window.location.origin + window.location.pathname + '#' + slug;
-      navigator.clipboard.writeText(url).then(() => {
+      if (!el) return;
+      const baseUrl = (window.location.href || '').split('#')[0];
+      const url = baseUrl + '#' + (slug || '');
+      copyTextToClipboard(url).then(() => {
         const prev = el.innerText;
         el.innerText = '✓';
         el.classList.add('copied');
-        history.pushState(null, null, '#' + slug);
-        setTimeout(() => {
+        try {
+          history.pushState(null, null, '#' + (slug || ''));
+        } catch (e) {}
+        if (el._copyTimeout) clearTimeout(el._copyTimeout);
+        el._copyTimeout = setTimeout(() => {
           el.innerText = prev;
           el.classList.remove('copied');
+          el._copyTimeout = null;
         }, 1500);
+      }).catch(err => {
+        console.warn('Copy heading link failed:', err);
       });
     }
 

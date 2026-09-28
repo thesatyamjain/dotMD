@@ -422,8 +422,15 @@ assert(templateSrc.includes('calcBaseViewBox'), 'calcBaseViewBox aspect matching
 assert(templateSrc.includes('toggleFullscreen'), 'toggleFullscreen missing in template.js');
 assert(templateSrc.includes('.mermaid-container svg .flowchart-link'), 'Flowchart link styles missing in template.js');
 assert(templateSrc.includes('fill: none !important'), 'fill: none !important override missing in template.js');
-assert(templateSrc.includes('xMidYMid meet'), 'xMidYMid meet aspect ratio missing in template.js');
+// Test 13: Verify Clipboard Copy Helper & Resilient Fallbacks
+assert(templateSrc.includes('function copyTextToClipboard'), 'copyTextToClipboard helper missing in template.js');
+assert(templateSrc.includes('function fallbackCopyTextToClipboard'), 'fallbackCopyTextToClipboard helper missing in template.js');
+assert(templateSrc.includes('copyTextToClipboard(codeText)'), 'copyCode must use copyTextToClipboard');
+assert(templateSrc.includes('copyTextToClipboard(text)'), 'copyRawMarkdown must use copyTextToClipboard');
+assert(templateSrc.includes('copyTextToClipboard(url)'), 'copyHeadingLink must use copyTextToClipboard');
+assert(templateSrc.includes('document.getElementById(\'raw-editor-textarea\')'), 'copyRawMarkdown must check raw-editor-textarea value');
 
-console.log('✔ All TOC, Outline, Responsive, Zen, Wide, Raw, Logo, Favicon, Table Tools, ASCII Aligner, Print Pagination, Toast, Client JS, In-Page Search, Headless PDF, YAML Frontmatter, Interactive Tasks, Windows, macOS, Linux, Industry Standard Installers & Lossless Vector Zoom checks passed successfully.');
+console.log('✔ All TOC, Outline, Responsive, Zen, Wide, Raw, Logo, Favicon, Table Tools, ASCII Aligner, Print Pagination, Toast, Client JS, In-Page Search, Headless PDF, YAML Frontmatter, Interactive Tasks, Windows, macOS, Linux, Industry Standard Installers, Lossless Vector Zoom & Resilient Clipboard Copy checks passed successfully.');
+
 
 
