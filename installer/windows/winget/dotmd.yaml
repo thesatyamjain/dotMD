@@ -1,13 +1,13 @@
 # yaml-language-server: $schema=https://aka.ms/winget-manifest.singleton.1.6.0.schema.json
 PackageIdentifier: dotmd.dotmd
 PackageVersion: 1.0.0
-PackageName: dot md
+PackageName: dotMD
 Publisher: The Software Co.
 License: MIT
 LicenseUrl: https://github.com/dotmd/dot-md/blob/main/LICENSE
 ShortDescription: Publication-grade Markdown editor and viewer with instant live reload
 Description: |
-  dot md turns Markdown into publication-grade editorial documents with sub-50ms live preview,
+  dotMD turns Markdown into publication-grade editorial documents with sub-50ms live preview,
   sticky outline table of contents, LaTeX math rendering via KaTeX, Mermaid diagrams,
   in-page search, and standalone HTML/PDF export.
 Moniker: dotmd

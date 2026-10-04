@@ -8,7 +8,7 @@
 
 ## Reporting a Vulnerability
 
-If you discover a potential security vulnerability in **dot md**, please report it responsibly rather than opening a public issue.
+If you discover a potential security vulnerability in **dotMD**, please report it responsibly rather than opening a public issue.
 
 Please send an email to:
 **creativitywithsatyam@gmail.com**

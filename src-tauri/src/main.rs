@@ -43,7 +43,7 @@ fn get_initial_document(state: State<'_, AppState>) -> Result<DocumentPayload, S
                 return Ok(DocumentPayload {
                     filename: "Welcome.md".into(),
                     file_path: "".into(),
-                    markdown: "# Welcome to dot md\n\nPublication-grade Markdown editor and standalone viewer.\n\n### Getting Started\n- Press **Ctrl+E** to edit this document in-place\n- Press **Ctrl+S** to save to disk\n- Press **T** to cycle themes (Dark / Light / Sepia)\n- Press **Z** for Zen reading mode\n- Press **W** to toggle Wide view\n".into(),
+                    markdown: "# Welcome to dotMD\n\nPublication-grade Markdown editor and standalone viewer.\n\n### Getting Started\n- Press **Ctrl+E** to edit this document in-place\n- Press **Ctrl+S** to save to disk\n- Press **T** to cycle themes (Dark / Light / Sepia)\n- Press **Z** for Zen reading mode\n- Press **W** to toggle Wide view\n".into(),
                 });
             }
         }
@@ -208,5 +208,5 @@ fn main() {
 
     builder
         .run(tauri::generate_context!())
-        .expect("error while running dot md tauri application");
+        .expect("error while running dotMD tauri application");
 }

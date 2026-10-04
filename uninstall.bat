@@ -1,9 +1,9 @@
 @echo off
 setlocal
-title dot md - Windows Uninstaller
+title dotMD - Windows Uninstaller
 
 echo ============================================================
-echo   dot md - Windows Desktop Uninstaller
+echo   dotMD - Windows Desktop Uninstaller
 echo ============================================================
 echo.
 

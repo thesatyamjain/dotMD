@@ -12,7 +12,7 @@ const args = process.argv.slice(2);
 // Display help
 if (args.includes('--help') || args.includes('-h')) {
   console.log(`
-  \x1b[1m\x1b[38;2;223;112;60mdot md\x1b[0m - Turn Markdown into publication-grade documents (Windows, macOS, Linux)
+  \x1b[1m\x1b[38;2;223;112;60mdotMD\x1b[0m - Turn Markdown into publication-grade documents (Windows, macOS, Linux)
 
   \x1b[1mUSAGE\x1b[0m
     dotmd <file.md> [options]
@@ -40,7 +40,7 @@ if (args.includes('--help') || args.includes('-h')) {
 // Handle desktop installation
 if (args.includes('--install')) {
   const { installCurrentPlatform } = require('../lib/platform-installer');
-  console.log('\n\x1b[1m\x1b[38;2;223;112;60mdot md\x1b[0m - Registering platform desktop integration...');
+  console.log('\n\x1b[1m\x1b[38;2;223;112;60mdotMD\x1b[0m - Registering platform desktop integration...');
   installCurrentPlatform({ silent: false })
     .then(() => {
       console.log('\x1b[32m✔ Installation completed successfully.\x1b[0m\n');
@@ -56,7 +56,7 @@ if (args.includes('--install')) {
 // Handle desktop uninstallation
 if (args.includes('--uninstall')) {
   const { uninstallCurrentPlatform } = require('../lib/platform-installer');
-  console.log('\n\x1b[1m\x1b[38;2;223;112;60mdot md\x1b[0m - Removing platform desktop integration...');
+  console.log('\n\x1b[1m\x1b[38;2;223;112;60mdotMD\x1b[0m - Removing platform desktop integration...');
   uninstallCurrentPlatform({ silent: false, purgeCache: true })
     .then(() => {
       console.log('\x1b[32m✔ Uninstallation completed successfully.\x1b[0m\n');
@@ -489,7 +489,7 @@ function launchWindowOrBrowser(url, targetFilePath) {
     }
 
     console.log(`
-  \x1b[1m\x1b[38;2;223;112;60mdot md\x1b[0m running at \x1b[4m${url}\x1b[0m
+  \x1b[1m\x1b[38;2;223;112;60mdotMD\x1b[0m running at \x1b[4m${url}\x1b[0m
   Watching \x1b[1m${filename}\x1b[0m for live changes.
   
   \x1b[90mShortcuts in browser:\x1b[0m

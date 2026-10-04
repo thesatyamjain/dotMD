@@ -5,7 +5,7 @@ cask "dotmd" do
   sha256 :no_check
 
   url "https://github.com/dotmd/dot-md/releases/download/v#{version}/dot-md_#{version}_#{arch}.dmg"
-  name "dot md"
+  name "dotMD"
   desc "Publication-grade Markdown editor and viewer with instant live reload"
   homepage "https://github.com/dotmd/dot-md"
 
@@ -17,8 +17,8 @@ cask "dotmd" do
   auto_updates true
   depends_on macos: ">= :high_sierra"
 
-  app "dot md.app"
-  binary "#{appdir}/dot md.app/Contents/MacOS/dot-md", target: "dotmd"
+  app "dotMD.app"
+  binary "#{appdir}/dotMD.app/Contents/MacOS/dot-md", target: "dotmd"
 
   zap trash: [
     "~/Library/Application Support/dot-md",

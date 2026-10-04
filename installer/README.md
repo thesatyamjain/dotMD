@@ -1,6 +1,6 @@
-# dot md - Industry Standard Installers & Packaging
+# dotMD - Industry Standard Installers & Packaging
 
-`dot md` adheres strictly to standard, native operating system packaging and software distribution standards across Windows, macOS, and Linux.
+`dotMD` adheres strictly to standard, native operating system packaging and software distribution standards across Windows, macOS, and Linux.
 
 ---
 
@@ -28,7 +28,7 @@ macOS software is packaged following Apple Human Interface and packaging convent
 
 | Format | Technology | Target | Deployment |
 | :--- | :--- | :--- | :--- |
-| **`.dmg`** | **Apple Disk Image** | Interactive Desktop | Standard macOS installation experience. Double-click the `.dmg` file and drag the `dot md.app` bundle into your `/Applications` directory. Fully configured with `CFBundleDocumentTypes` and LaunchServices declarations for `.md` files. |
+| **`.dmg`** | **Apple Disk Image** | Interactive Desktop | Standard macOS installation experience. Double-click the `.dmg` file and drag the `dotMD.app` bundle into your `/Applications` directory. Fully configured with `CFBundleDocumentTypes` and LaunchServices declarations for `.md` files. |
 | **Cask** | **Homebrew** | Developer Package Manager | Standard Homebrew Cask formula ([`installer/macos/homebrew/dotmd.rb`](file:///e:/md-visual/installer/macos/homebrew/dotmd.rb)). Install via: <br>`brew install --cask dotmd` |
 
 Build locally on macOS:

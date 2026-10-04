@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/tauri-apps/tauri/dev/crates/tauri-config-schema/schema.json",
-  "productName": "dot md",
+  "productName": "dotMD",
   "version": "1.0.0",
   "identifier": "com.dotmd.app",
   "build": {
@@ -15,7 +15,7 @@
     "windows": [
       {
         "label": "main",
-        "title": "dot md",
+        "title": "dotMD",
         "width": 1280,
         "height": 840,
         "minWidth": 800,

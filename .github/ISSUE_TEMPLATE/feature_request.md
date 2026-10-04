@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea or enhancement for dot md
+about: Suggest an idea or enhancement for dotMD
 title: '[FEAT] '
 labels: 'enhancement'
 assignees: ''

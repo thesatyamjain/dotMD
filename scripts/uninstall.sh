@@ -2,7 +2,7 @@
 set -e
 
 # ============================================================
-#   dot md - Cross-Platform Uninstaller (macOS & Linux)
+#   dotMD - Cross-Platform Uninstaller (macOS & Linux)
 # ============================================================
 
 BOLD='\033[1m'
@@ -11,7 +11,7 @@ GREEN='\033[32m'
 RESET='\033[0m'
 
 echo ""
-printf "${BOLD}${TERRA}dot md${RESET} - Uninstaller\n"
+printf "${BOLD}${TERRA}dotMD${RESET} - Uninstaller\n"
 echo "============================================================"
 
 OS="$(uname -s)"
@@ -58,7 +58,7 @@ elif [ "$OS" = "Darwin" ]; then
     MACOS_APPS="$HOME/Applications"
   fi
 
-  APP_BUNDLE="$MACOS_APPS/dot md.app"
+  APP_BUNDLE="$MACOS_APPS/dotMD.app"
   if [ -d "$APP_BUNDLE" ]; then
     rm -rf "$APP_BUNDLE"
     LSREGISTER="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister"
@@ -76,5 +76,5 @@ printf "${GREEN}✔${RESET} Purged local cache and configuration\n"
 
 echo ""
 printf "${GREEN}${BOLD}Uninstallation Complete!${RESET}\n"
-echo "dot md was successfully removed from your system."
+echo "dotMD was successfully removed from your system."
 echo ""

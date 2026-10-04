@@ -2,7 +2,7 @@
 setlocal
 
 echo ============================================================
-echo   Building dot md Desktop App via Tauri (Rust)
+echo   Building dotMD Desktop App via Tauri (Rust)
 echo ============================================================
 echo.
 

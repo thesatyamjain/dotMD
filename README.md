@@ -1,4 +1,4 @@
-# dot md
+# dotMD
 
 > Publication-grade Markdown editor and viewer. Zero-terminal execution, sub-50ms live preview, curated editorial typography, and self-contained document workflows across Windows, macOS, and Linux.
 
@@ -6,7 +6,7 @@
 
 ## Overview
 
-`dot md` bridges the gap between raw text editing and publication-grade document presentation. Unlike generic previewers that bundle heavy browser runtimes or require remote cloud services, `dot md` operates entirely locally with two modern execution tiers: a high-performance **Tauri (Rust)** native desktop application, and an ultra-lightweight **Cross-Platform CLI**.
+`dotMD` bridges the gap between raw text editing and publication-grade document presentation. Unlike generic previewers that bundle heavy browser runtimes or require remote cloud services, `dotMD` operates entirely locally with two modern execution tiers: a high-performance **Tauri (Rust)** native desktop application, and an ultra-lightweight **Cross-Platform CLI**.
 
 ---
 
@@ -42,7 +42,7 @@
 
 ## Architecture & Execution Modes
 
-`dot md` supports two streamlined execution tiers to fit any workflow or environment:
+`dotMD` supports two streamlined execution tiers to fit any workflow or environment:
 
 | Attribute | **1. Tauri Desktop App (Rust)** | **2. Cross-Platform CLI (Node)** |
 | :--- | :--- | :--- |
@@ -70,7 +70,7 @@
 
 ## Installation & OS Integration
 
-`dot md` adheres strictly to industry standard packaging toolchains across all supported platforms.
+`dotMD` adheres strictly to industry standard packaging toolchains across all supported platforms.
 
 ### Windows
 - **Microsoft Windows Installer (MSI)**:
@@ -78,7 +78,7 @@
   - Silent/GPO deployable: `msiexec /i dot-md_x64_en-US.msi /quiet`
   - Registers standard Windows uninstall entry and `.md` file associations.
 - **NSIS Setup (.exe)**:
-  - Standard user-space setup wizard with automatic UAC elevation, desktop shortcuts, Start Menu integration, and right-click *"Open with dot md"* context menu.
+  - Standard user-space setup wizard with automatic UAC elevation, desktop shortcuts, Start Menu integration, and right-click *"Open with dotMD"* context menu.
 - **Windows Package Manager (WinGet)**:
   - Official Microsoft WinGet manifest ([`installer/windows/winget/dotmd.yaml`](file:///e:/md-visual/installer/windows/winget/dotmd.yaml)):
     ```cmd
@@ -87,7 +87,7 @@
 
 ### macOS
 - **Apple Disk Image (.dmg)**:
-  - Industry standard `.dmg` volume. Double-click to open and drag `dot md.app` into `/Applications`.
+  - Industry standard `.dmg` volume. Double-click to open and drag `dotMD.app` into `/Applications`.
   - Configured with `CFBundleDocumentTypes` for native Finder double-click handling of `.md`, `.markdown`, and `.mdown` files.
 - **Homebrew Cask**:
   - Official Cask formula ([`installer/macos/homebrew/dotmd.rb`](file:///e:/md-visual/installer/macos/homebrew/dotmd.rb)):

@@ -1,10 +1,10 @@
 # ============================================================
-#   dot md - Tauri Environment Setup & Diagnostics
+#   dotMD - Tauri Environment Setup & Diagnostics
 # ============================================================
 
 Write-Host ""
 Write-Host "============================================================" -ForegroundColor DarkGray
-Write-Host "  dot md - Tauri (Rust + Webview) Toolchain Setup" -ForegroundColor Cyan
+Write-Host "  dotMD - Tauri (Rust + Webview) Toolchain Setup" -ForegroundColor Cyan
 Write-Host "============================================================" -ForegroundColor DarkGray
 Write-Host ""
 

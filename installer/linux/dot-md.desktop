@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=dot md
+Name=dotMD
 GenericName=Markdown Editor & Viewer
 Comment=Publication-grade Markdown editor and viewer with instant live reload
 Exec=dotmd %F
@@ -10,9 +10,9 @@ Terminal=false
 MimeType=text/markdown;text/x-markdown;text/plain;application/x-genesis-rom;
 Categories=Utility;TextEditor;Office;Publishing;
 Keywords=markdown;editor;viewer;preview;katex;mermaid;
-StartupWMClass=dot md
+StartupWMClass=dotMD
 Actions=Preview;
 
 [Desktop Action Preview]
-Name=Preview with dot md
+Name=Preview with dotMD
 Exec=dotmd %F

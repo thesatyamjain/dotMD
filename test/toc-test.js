@@ -230,7 +230,7 @@ assert(desktopContent.includes('[Desktop Entry]'), 'Linux .desktop header missin
 assert(desktopContent.includes('Exec=dotmd %F'), 'Linux .desktop Exec command missing');
 assert(desktopContent.includes('text/markdown'), 'Linux .desktop text/markdown MIME type missing');
 assert(desktopContent.includes('MimeType='), 'Linux .desktop MimeType field missing');
-assert(desktopContent.includes('StartupWMClass=dot md'), 'Linux StartupWMClass missing');
+assert(desktopContent.includes('StartupWMClass=dotMD'), 'Linux StartupWMClass missing');
 
 // macOS Info.plist verification
 const infoPlist = getMacosInfoPlist();
@@ -269,7 +269,7 @@ assert(cargoToml.includes('notify ='), 'notify crate missing in Cargo.toml');
 assert(cargoToml.includes('pulldown-cmark ='), 'pulldown-cmark crate missing in Cargo.toml');
 
 // Tauri configuration assertions
-assert.strictEqual(tauriConf.productName, 'dot md', 'Tauri productName mismatch');
+assert.strictEqual(tauriConf.productName, 'dotMD', 'Tauri productName mismatch');
 assert.strictEqual(tauriConf.identifier, 'com.dotmd.app', 'Tauri identifier mismatch');
 assert.strictEqual(tauriConf.app.withGlobalTauri, true, 'withGlobalTauri must be enabled');
 assert(tauriConf.bundle.fileAssociations.some(fa => fa.ext.includes('md') && fa.ext.includes('markdown')), 'Tauri file associations missing');
@@ -380,7 +380,7 @@ assert(wingetContent.includes('InstallerType: wix'), 'WinGet missing WiX MSI ins
 const brewContent = fs.readFileSync(path.join(installerDir, 'macos', 'homebrew', 'dotmd.rb'), 'utf8');
 assert(brewContent.includes('cask "dotmd"'), 'Invalid Homebrew Cask definition');
 assert(brewContent.includes('.dmg'), 'Homebrew Cask missing DMG URL');
-assert(brewContent.includes('app "dot md.app"'), 'Homebrew Cask missing app stanza');
+assert(brewContent.includes('app "dotMD.app"'), 'Homebrew Cask missing app stanza');
 
 // Verify Freedesktop Linux specifications
 const linuxDesktopContent = fs.readFileSync(path.join(installerDir, 'linux', 'dot-md.desktop'), 'utf8');

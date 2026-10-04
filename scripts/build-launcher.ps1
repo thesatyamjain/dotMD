@@ -1,4 +1,4 @@
-# Build dot md Windows Zero-Console Native Launcher (.exe)
+# Build dotMD Windows Zero-Console Native Launcher (.exe)
 $rootDir = Resolve-Path (Join-Path $PSScriptRoot "..")
 $cscPaths = @(
     "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe",

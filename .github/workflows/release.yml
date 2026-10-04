@@ -58,7 +58,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tagName: ${{ github.ref_name }}
-          releaseName: 'dot md v__VERSION__'
+          releaseName: 'dotMD v__VERSION__'
           releaseBody: 'See the release assets for installer binaries.'
           releaseDraft: false
           prerelease: false

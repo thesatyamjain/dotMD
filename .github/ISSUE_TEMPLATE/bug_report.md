@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help us improve dot md
+about: Create a report to help us improve dotMD
 title: '[BUG] '
 labels: 'bug'
 assignees: ''

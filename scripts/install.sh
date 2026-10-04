@@ -2,7 +2,7 @@
 set -e
 
 # ============================================================
-#   dot md - Cross-Platform Installer (macOS & Linux)
+#   dotMD - Cross-Platform Installer (macOS & Linux)
 # ============================================================
 
 BOLD='\033[1m'
@@ -11,7 +11,7 @@ GREEN='\033[32m'
 RESET='\033[0m'
 
 echo ""
-printf "${BOLD}${TERRA}dot md${RESET} - Publication-grade Markdown editor installer\n"
+printf "${BOLD}${TERRA}dotMD${RESET} - Publication-grade Markdown editor installer\n"
 echo "============================================================"
 
 # 1. Verify Node.js
@@ -78,7 +78,7 @@ if [ "$OS" = "Linux" ]; then
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=dot md
+Name=dotMD
 GenericName=Markdown Editor & Viewer
 Comment=Publication-grade Markdown editor and standalone viewer
 Exec=$CLI_WRAPPER %F
@@ -87,11 +87,11 @@ Terminal=false
 MimeType=text/markdown;text/x-markdown;text/plain;
 Categories=Utility;TextEditor;Office;
 Keywords=markdown;editor;viewer;preview;
-StartupWMClass=dot md
+StartupWMClass=dotMD
 Actions=Preview;
 
 [Desktop Action Preview]
-Name=Preview with dot md
+Name=Preview with dotMD
 Exec=$CLI_WRAPPER %F
 EOF
   chmod +x "$DESKTOP_FILE"
@@ -114,7 +114,7 @@ elif [ "$OS" = "Darwin" ]; then
     MACOS_APPS="$HOME/Applications"
   fi
 
-  APP_BUNDLE="$MACOS_APPS/dot md.app"
+  APP_BUNDLE="$MACOS_APPS/dotMD.app"
   CONTENTS="$APP_BUNDLE/Contents"
   MACOS="$CONTENTS/MacOS"
   RESOURCES="$CONTENTS/Resources"
@@ -134,9 +134,9 @@ elif [ "$OS" = "Darwin" ]; then
     <key>CFBundleIdentifier</key>
     <string>com.dotmd.app</string>
     <key>CFBundleName</key>
-    <string>dot md</string>
+    <string>dotMD</string>
     <key>CFBundleDisplayName</key>
-    <string>dot md</string>
+    <string>dotMD</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>

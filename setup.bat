@@ -1,9 +1,9 @@
 @echo off
 setlocal
-title dot md - Windows Installer
+title dotMD - Windows Installer
 
 echo ============================================================
-echo   dot md - Windows Desktop Installer
+echo   dotMD - Windows Desktop Installer
 echo ============================================================
 echo.
 
@@ -20,7 +20,7 @@ if %ERRORLEVEL% NEQ 0 (
 )
 
 echo [1/2] Registering .md and .markdown associations in Windows Registry...
-echo [2/2] Adding "Open with dot md" Explorer context menu...
+echo [2/2] Adding "Open with dotMD" Explorer context menu...
 echo.
 
 node "%ROOT_DIR%bin\cli.js" --install
@@ -30,8 +30,8 @@ if %ERRORLEVEL% EQU 0 (
     echo ============================================================
     echo   Installation Successful!
     echo.
-    echo   - Double-click any .md file to open in dot md.
-    echo   - Right-click any file and choose "Open with dot md".
+    echo   - Double-click any .md file to open in dotMD.
+    echo   - Right-click any file and choose "Open with dotMD".
     echo   - Run "uninstall.bat" anytime to cleanly remove integration.
     echo ============================================================
 ) else (

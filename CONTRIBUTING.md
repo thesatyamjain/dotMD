@@ -1,6 +1,6 @@
-# Contributing to dot md
+# Contributing to dotMD
 
-Thank you for your interest in contributing to **dot md**! We welcome bug reports, improvements, documentation updates, and feature suggestions.
+Thank you for your interest in contributing to **dotMD**! We welcome bug reports, improvements, documentation updates, and feature suggestions.
 
 ---
 

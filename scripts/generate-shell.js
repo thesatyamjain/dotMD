@@ -4,7 +4,7 @@ const { renderTemplate } = require('../lib/template');
 
 const shellHtml = renderTemplate({
   markdown: '',
-  filename: 'dot md',
+  filename: 'dotMD',
   isLive: false,
 });
 
